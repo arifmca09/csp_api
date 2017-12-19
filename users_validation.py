@@ -12,6 +12,7 @@ class UsersValidation(object):
 
         :param measurement: Provide Influx DB measurement name
         """
+
         self.measurement = measurement
 
     def validate_customer(self, url):

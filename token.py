@@ -14,6 +14,7 @@ class APIToken(UsersValidation):
         :param username: Provide api username
         :param password: Provide api password
         """
+
         self.username = username
         self.password = password
         self.measurement = measurement
