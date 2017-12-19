@@ -1,4 +1,3 @@
-
 **Awesome API Checker.**
 
 # Requirements
@@ -19,5 +18,3 @@ Initiate a class
     my_appication_token = my_instance.application_token(url='https://endpoint.example.com/token/application')
 
     my_customer_token = my_instance.customer_token(url='https://endpoint.example.com/token/customer')
-    
-Enjoy the API's
