@@ -13,8 +13,8 @@ Initiate a class
     from smart_api.token import APIToken
     
     my_instance = APIToken(username="abcedefghij",
-                    password="jihgfedecba",
-                )
+                           password="jihgfedecba",
+                          )
     my_appication_token = my_instance.application_token(url='https://endpoint.example.com/token/application')
 
     my_customer_token = my_instance.customer_token(url='https://endpoint.example.com/token/customer')
