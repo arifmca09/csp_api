@@ -4,7 +4,7 @@
 
 # Requirements
 
-* Python (2.7, 3.4, 3.5, 3.6)
+* Python (3.4, 3.5, 3.6)
 
 # Example
 
@@ -14,8 +14,8 @@ Initiate a class
 
     from smart_api import CSPApi
     
-    my_instance = CSPApi(username="ce8b19f98c2d4868b9003eeee4dfd6d0",
-                         password="694E66bC9fA342159B4BB444bB083aB4"
+    my_instance = CSPApi(username="abcdefgijkl",
+                         password="lkjigfedcba"
                          )
 
     my_appication_token = my_instance.application_token(url='https://endpoint.example.com/token/application')
