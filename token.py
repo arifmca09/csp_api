@@ -1,13 +1,15 @@
+#!/usr/bin/env python
+
+import sys
 import requests
+from types import SimpleNamespace
 
-from users_validation import UsersValidation
 
-
-class APIToken(UsersValidation):
+class APIToken(object):
     """
-    CSP api Token Generation
+    CSP API Token Generation
     """
-    def __init__(self, username, password, measurement):
+    def __init__(self, username, password):
         """
         Initialization to have username and password
 
@@ -17,8 +19,8 @@ class APIToken(UsersValidation):
 
         self.username = username
         self.password = password
-        self.measurement = measurement
         self.app_token = None
+        self.cus_token = None
 
     def application_token(self, url):
         """
@@ -28,9 +30,13 @@ class APIToken(UsersValidation):
         :return: return token in dictionary
         :rtype: dict
         """
-
-        self.app_token = requests.post(url=url, timeout=10, auth=(self.username, self.password))
-        return self.app_token.json()
+        try:
+            method = requests.post(url=url, timeout=10, auth=(self.username, self.password))
+            self.app_token = SimpleNamespace(**method.json())
+            return self.app_token
+        except Exception as e:
+            print(e)
+            sys.exit(2)
 
     def customer_token(self, url, username, password):
         """
@@ -42,9 +48,13 @@ class APIToken(UsersValidation):
         :return: return token in dictionary
         :rtype: dict
         """
-
-        method = requests.post(url=url, timeout=10, auth=(self.username, self.password),
-                               data="username=%s&password=%s" % (username, password),
-                               headers={"Content-Type": "text/plain"},
-                               )
-        return method
+        try:
+            method = requests.post(url=url, timeout=10, auth=(self.username, self.password),
+                                   data="username=%s&password=%s" % (username, password),
+                                   headers={"Content-Type": "text/plain"},
+                                   )
+            self.cus_token = SimpleNamespace(**method.json())
+            return self.cus_token
+        except Exception as e:
+            print(e)
+            sys.exit(2)

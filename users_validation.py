@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import requests
 
 
@@ -13,6 +14,7 @@ class UsersValidation(object):
         :param measurement: Provide Influx DB measurement name
         """
 
+        self.app_token = None
         self.measurement = measurement
 
     def validate_customer(self, url):
@@ -24,6 +26,7 @@ class UsersValidation(object):
         :rtype: dict
         """
 
-        method = requests.get(url=url, headers={"cn": "5043451834", "Authorization": "Bearer %s" %self.app_token.json()['access_token']})
-        # print self.app_token.json()
+        method = requests.get(url=url, headers={"cn": "5043451834",
+                              "Authorization": "Bearer %s" % self.app_token.access_token}
+                              )
         return method
