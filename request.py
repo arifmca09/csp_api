@@ -21,7 +21,7 @@ class APIRequest(object):
         """
         Perform merge of headers with Authorization JSON
 
-        :param headers:
+        :param headers: Provide headers in JSON
         :return: Returns merged headers
         :rtype: dict
         """
