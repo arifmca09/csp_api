@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 from .token import APIToken
 from .request import APIRequest
