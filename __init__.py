@@ -1,8 +1,8 @@
 
 from .token import APIToken
-from .users_validation import UsersValidation
+from .request import APIRequest
 
 
-class CSPApi(APIToken, UsersValidation):
+class CSPApi(APIToken, APIRequest):
     def __init__(self, username, password):
         super().__init__(username, password)
