@@ -39,7 +39,6 @@ class APIRequest(object):
         :return: Returns get request response in dictionary
         :rtype: dict
         """
-        print(self.timeout)
         method = requests.get(url=url, headers=self.merge(headers=headers),
                               proxies=proxies, timeout=self.timeout
                               )
