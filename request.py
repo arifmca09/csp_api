@@ -42,7 +42,7 @@ class APIRequest(object):
         method = requests.get(url=url, headers=self.merge(headers=headers), proxies=proxies)
         return method
 
-    def post(self, url, headers, proxies=None, data=None):
+    def post(self, url, headers, data, proxies=None):
         """
         Perform POST request method
 
