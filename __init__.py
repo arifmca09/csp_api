@@ -6,5 +6,5 @@ from .database import MySQLOps
 
 
 class CSPApi(APIToken, APIRequest):
-    def __init__(self, username, password):
-        super().__init__(username, password)
+    def __init__(self, username, password, timeout=10):
+        super().__init__(username, password, timeout)

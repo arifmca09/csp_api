@@ -8,14 +8,14 @@ class APIRequest(object):
     """
     Module for CSP API Validations
     """
-    def __init__(self, measurement):
+    def __init__(self, timeout=10):
         """
         Initialization for Request Validation
 
-        :param measurement: Provide Influx DB measurement name
+        :param timeout: Provide timeout value for API call
         """
+        self.timeout = timeout
         self.app_token = None
-        self.measurement = measurement
 
     def merge(self, headers):
         """
@@ -39,7 +39,10 @@ class APIRequest(object):
         :return: Returns get request response in dictionary
         :rtype: dict
         """
-        method = requests.get(url=url, headers=self.merge(headers=headers), proxies=proxies)
+        print(self.timeout)
+        method = requests.get(url=url, headers=self.merge(headers=headers),
+                              proxies=proxies, timeout=self.timeout
+                              )
         return method
 
     def post(self, url, headers, data, proxies=None):
@@ -53,5 +56,7 @@ class APIRequest(object):
         :return: returns response in dictionary
         :rtype: dict
         """
-        method = requests.post(url=url, headers=self.merge(headers=headers), data=data, proxies=proxies)
+        method = requests.post(url=url, headers=self.merge(headers=headers),
+                               data=data, proxies=proxies, timeout=self.timeout
+                               )
         return method
