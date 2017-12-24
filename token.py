@@ -14,8 +14,8 @@ class APIToken(object):
 
         :param username: Provide api username
         :param password: Provide api password
+        :param timeout: Provide api timeout
         """
-
         self.username = username
         self.password = password
         self.app_token = None
@@ -33,9 +33,9 @@ class APIToken(object):
         try:
             method = requests.post(url=url, timeout=self.timeout, auth=(self.username, self.password))
             self.app_token = SimpleNamespace(**method.json())
-            return self.merge_object(self.app_token, method)
+            return self._merge_object(self.app_token, method)
         except Exception as e:
-            return e
+            return self._create_properties(object_=e, status_code=0)
 
     def customer_token(self, url, username, password):
         """
@@ -53,12 +53,12 @@ class APIToken(object):
                                    headers={"Content-Type": "text/plain"},
                                    )
             self.cus_token = SimpleNamespace(**method.json())
-            return self.merge_object(self.cus_token, method)
+            return self._merge_object(self.cus_token, method)
         except Exception as e:
-            return e
+            return self._create_properties(object_=e, status_code=0)
 
     @staticmethod
-    def merge_object(from_object, to_object):
+    def _merge_object(from_object, to_object):
         """
         Used to copy properties from one object to another if there isn't a naming conflict;
 
@@ -71,3 +71,17 @@ class APIToken(object):
             if not callable(from_object.__dict__[i]) and not hasattr(to_object, i):
                 setattr(to_object, i, getattr(from_object, i))
         return to_object
+
+    @staticmethod
+    def _create_properties(object_, **kwargs):
+        """
+        Create properties to existing objects
+
+        :param entity: Provide object to which property to add
+        :param kwargs: Provide key worded object & value
+        :return: Combined object with extra properties
+        :rtype: object
+        """
+        for key, value in kwargs.items():
+            setattr(object_, key, value)
+        return object_
