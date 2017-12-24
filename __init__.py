@@ -2,6 +2,7 @@
 
 from .token import APIToken
 from .request import APIRequest
+from .database import MySQLOps
 
 
 class CSPApi(APIToken, APIRequest):
