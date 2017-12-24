@@ -14,12 +14,12 @@ class MySQLOps(object):
         :param password: Provide MySQL password
         :param database: Provide MySQL database
         """
+        self.db = None
         self.hostname = hostname
         self.username = username
         self.password = password
         self.database = database
-        self.db = None
-        self.connect()
+        self._connect()
 
     def __del__(self):
         """
@@ -29,7 +29,7 @@ class MySQLOps(object):
         """
         self.db.close()
 
-    def connect(self):
+    def _connect(self):
         """
         MySQL DB connection establishment
 
