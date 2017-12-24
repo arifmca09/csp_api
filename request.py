@@ -17,7 +17,7 @@ class APIRequest(object):
         self.timeout = timeout
         self.app_token = None
 
-    def merge(self, headers):
+    def _merge(self, headers):
         """
         Perform merge of headers with Authorization JSON
 
@@ -39,7 +39,7 @@ class APIRequest(object):
         :return: Returns get request response in dictionary
         :rtype: dict
         """
-        method = requests.get(url=url, headers=self.merge(headers=headers),
+        method = requests.get(url=url, headers=self._merge(headers=headers),
                               proxies=proxies, timeout=self.timeout
                               )
         return method
@@ -55,7 +55,7 @@ class APIRequest(object):
         :return: returns response in dictionary
         :rtype: dict
         """
-        method = requests.post(url=url, headers=self.merge(headers=headers),
+        method = requests.post(url=url, headers=self._merge(headers=headers),
                                data=data, proxies=proxies, timeout=self.timeout
                                )
         return method
