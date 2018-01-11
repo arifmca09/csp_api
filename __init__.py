@@ -1,8 +1,10 @@
+#!/usr/bin/env python
 
 from .token import APIToken
-from .users_validation import UsersValidation
+from .request import APIRequest
+from .database import MySQLOps
 
 
-class CSPApi(APIToken, UsersValidation):
-    def __init__(self, username, password):
-        super().__init__(username, password)
+class CSPApi(APIToken, APIRequest):
+    def __init__(self, username, password, timeout=10):
+        super().__init__(username, password, timeout)
